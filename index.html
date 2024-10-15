@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Web App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
         .app-container {
             max-width: 414px;
             margin: 0 auto;
             background-color: white;
-            height: 100vh;
+            height: 100%;
             display: flex;
             flex-direction: column;
         }
@@ -34,6 +41,8 @@
             padding: 10px;
             background-color: #f0f0f0;
             display: flex;
+            position: sticky;
+            bottom: 0;
         }
         #user-input {
             flex-grow: 1;
@@ -86,7 +95,7 @@
             const chatArea = document.getElementById('chat-area');
             const userInput = document.getElementById('user-input');
             const sendButton = document.getElementById('send-button');
-
+        
             function addMessage(message, isUser) {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message');
@@ -95,7 +104,7 @@
                 chatArea.appendChild(messageDiv);
                 chatArea.scrollTop = chatArea.scrollHeight;
             }
-
+        
             function botResponse(userMessage) {
                 // Simple bot logic - you can expand this
                 if (userMessage.toLowerCase().includes('hello')) {
@@ -106,7 +115,7 @@
                     return "I'm sorry, I didn't understand that. Can you please rephrase?";
                 }
             }
-
+        
             function handleSend() {
                 const message = userInput.value.trim();
                 if (message) {
@@ -120,7 +129,7 @@
                     }, 1000);
                 }
             }
-
+        
             sendButton.addEventListener('click', handleSend);
             userInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
